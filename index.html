@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Luvira Finance</title><link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header><div><p class="eyebrow">LUVIRA AI SECRETARY / FINANCE</p><h1>財務ダッシュボード</h1></div><button id="exportBtn" class="secondary">CSVを書き出す</button></header>
+  <main>
+    <section class="cards" id="summary"></section>
+    <section class="grid">
+      <div class="panel"><div class="panel-head"><h2>支出を登録</h2><label class="file-button">CSV取込<input id="csvInput" type="file" accept=".csv,text/csv"></label></div>
+        <form id="transactionForm" class="form-grid">
+          <label>日付<input name="date" type="date" required></label><label>金額<input name="amount" type="number" min="0" required></label>
+          <label>内容<input name="description" required placeholder="例：Adobe サブスク"></label><label>カテゴリ<select name="category"><option>人件費</option><option>家賃</option><option>外注費</option><option>通信費</option><option>サブスク</option><option>広告宣伝費</option><option>仕入</option><option>その他</option></select></label>
+          <label>支払元<select name="source"><option>会社口座</option><option>法人カード</option><option>個人カード</option><option>個人口座</option><option>現金</option></select></label><label>状態<select name="status"><option>未精算</option><option>精算済み</option><option>対象外</option></select></label>
+          <button class="primary" type="submit">登録する</button>
+        </form>
+      </div>
+      <div class="panel"><div class="panel-head"><h2>固定費</h2><button id="addFixedBtn" class="secondary">追加</button></div><div id="fixedCosts"></div></div>
+    </section>
+    <section class="panel"><div class="panel-head"><h2>最近の支出</h2><select id="monthFilter"></select></div><div class="table-wrap"><table><thead><tr><th>日付</th><th>内容</th><th>カテゴリ</th><th>支払元</th><th class="right">金額</th><th></th></tr></thead><tbody id="transactions"></tbody></table></div></section>
+  </main>
+  <dialog id="fixedDialog"><form method="dialog" id="fixedForm"><h2>固定費を追加</h2><label>項目<input name="name" required placeholder="例：オフィス賃料"></label><label>月額<input name="amount" type="number" min="0" required></label><menu><button value="cancel" class="secondary">キャンセル</button><button value="default" class="primary">追加する</button></menu></form></dialog>
+  <script src="app.js"></script>
+</body></html>
